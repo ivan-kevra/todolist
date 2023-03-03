@@ -1,18 +1,19 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import style from "../todolist/Todolist.module.css";
+import Button from "@mui/material/Button/";
+import TextField from '@mui/material/TextField';
 
 type AddItemFormPropsType = {
-    addTask: (id: string, title: string) => void
-    id: string
+    addItem: (title: string) => void
 }
 
 export const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
     let [title, setTitle] = useState('')
     let [error, setError] = useState<String | null>(null)
 
-    const addTaskHandler = () => {
+    const addItemHandler = () => {
         if (title.trim() !== '') {
-            props.addTask(props.id, title.trim())
+            props.addItem(title.trim())
         } else {
             setError('Title is required')
         }
@@ -24,18 +25,30 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
     const onEnterAddTaskHandler = (event: KeyboardEvent<HTMLInputElement>) => {
         setError(null)
         if (event.key === 'Enter') {
-            addTaskHandler()
+            addItemHandler()
         }
     }
-
+    const buttonStyles = {
+        maxWidth: '38px',
+        maxHeight: '38px',
+        minWidth: '38px',
+        minHeight: '38px',
+    }
     return (
         <div>
-            <input value={title}
-                   onChange={onChangeTaskTitleHandler}
-                   onKeyDown={onEnterAddTaskHandler}
-                   className={error === 'Title is required' ? style.error : ''}/>
-            <button onClick={addTaskHandler}>+</button>
-            {error === 'Title is required' && <div className={style.errorMessage}>Title is required</div>}
+            <TextField
+                size={'small'}
+                value={title}
+                onChange={onChangeTaskTitleHandler}
+                onKeyUp={onEnterAddTaskHandler}
+                id='outlined-basic'
+                label={error ? 'Title is required' : 'add title'}
+                variant='outlined'
+                error={!!error}/>
+            <Button variant="contained"
+                    color='primary'
+                    onClick={addItemHandler}
+                    style={buttonStyles}>+</Button>
         </div>
     );
 };
