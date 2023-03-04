@@ -1,12 +1,10 @@
-import React, {ChangeEvent} from 'react';
-import {FilterValuesType, TaskType} from "../../App";
-import style from './Todolist.module.css'
+import React from 'react';
+import {FilterValuesType, TaskType} from "../../AppWithRedux";
 import {AddItemForm} from "../addItemForm/AddItemForm";
 import {EditableSpan} from "../editableSpan/EditableSpan";
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Checkbox from "@mui/material/Checkbox";
 import {Task} from "../task/Task";
 
 type TodolistPropsType = {
