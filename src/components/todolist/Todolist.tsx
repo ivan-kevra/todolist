@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {FilterValuesType, TaskType} from "../../AppWithRedux";
 import {AddItemForm} from "../addItemForm/AddItemForm";
 import {EditableSpan} from "../editableSpan/EditableSpan";
@@ -26,24 +26,24 @@ type TodolistPropsType = {
 }
 
 export const Todolist: React.FC<TodolistPropsType> = (props) => {
-    const onChangeAllHandler = () => {
+    const onChangeAllHandler = useCallback(() => {
         props.changeFilter(props.id, 'all')
-    }
-    const onChangeActiveHandler = () => {
+    }, [props.changeFilter, props.id])
+    const onChangeActiveHandler = useCallback(() => {
         props.changeFilter(props.id, 'active')
-    }
-    const onChangeCompletedHandler = () => {
+    }, [props.changeFilter, props.id])
+    const onChangeCompletedHandler = useCallback(() => {
         props.changeFilter(props.id, 'completed')
-    }
-    const removeTodolistHandler = () => {
+    }, [props.changeFilter, props.id])
+    const removeTodolistHandler = useCallback(() => {
         props.removeTodolist(props.id)
-    }
-    const changeTodolistTitleHandler = () => {
+    }, [props.removeTodolist, props.id])
+    const changeTodolistTitleHandler = useCallback(() => {
         props.changeTodolistTitle(props.id, props.title)
-    }
-    const addTaskHandler = (title: string) => {
+    }, [props.changeTodolistTitle, props.id])
+    const addTaskHandler = useCallback((title: string) => {
         props.addTask(props.id, title)
-    }
+    }, [props.addTask, props.id])
 
     return (
         <div>

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, memo} from 'react';
+import React, {ChangeEvent, memo, useCallback} from 'react';
 import style from "../todolist/Todolist.module.css";
 import Checkbox from "@mui/material/Checkbox";
 import {EditableSpan} from "../editableSpan/EditableSpan";
@@ -13,17 +13,17 @@ type TaskPropsType = {
     changeTaskTitle: (taskId: string, title: string) => void
 }
 
-export const Task: React.FC<TaskPropsType> = (props) => {
-    const removeTaskHandler = () => {
+export const Task: React.FC<TaskPropsType> = React.memo((props) => {
+    const removeTaskHandler = useCallback(() => {
         props.removeTask(props.task.id)
-    }
-    const changeTaskStatusHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    }, [props.removeTask, props.task.id])
+    const changeTaskStatusHandler = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         let newIsDoneValue = event.currentTarget.checked
         props.changeTaskStatus(props.task.id, newIsDoneValue)
-    }
-    const changeTaskTitleHandler = () => {
+    }, [props.changeTaskStatus, props.task.id])
+    const changeTaskTitleHandler = useCallback(() => {
         props.changeTaskTitle(props.task.id, props.task.title)
-    }
+    }, [props.changeTaskTitle, props.task.id])
     return (
         <li key={props.task.id} className={props.task.isDone ? style.isDone : ''}>
             <Checkbox color='primary'
@@ -36,5 +36,5 @@ export const Task: React.FC<TaskPropsType> = (props) => {
             </IconButton>
         </li>
     );
-}
+})
 

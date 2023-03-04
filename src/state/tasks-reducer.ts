@@ -64,11 +64,11 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
     }
 }
 
-export const removeTaskAC = (taskId: string, todolistId: string) => {
+export const removeTaskAC = (todolistId: string, taskId: string) => {
     return {
         type: 'REMOVE-TASK',
-        taskId,
-        todolistId
+        todolistId,
+        taskId
     } as const
 }
 export const addTaskAC = (todolistId: string, title: string) => {

@@ -1,5 +1,4 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import style from "../todolist/Todolist.module.css";
 import Button from "@mui/material/Button/";
 import TextField from '@mui/material/TextField';
 
@@ -7,7 +6,8 @@ type AddItemFormPropsType = {
     addItem: (title: string) => void
 }
 
-export const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
+export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo((props) => {
+
     let [title, setTitle] = useState('')
     let [error, setError] = useState<String | null>(null)
 
@@ -23,7 +23,9 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
         setTitle(event.currentTarget.value)
     }
     const onEnterAddTaskHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-        setError(null)
+        if (error !== null) {
+            setError(null)
+        }
         if (event.key === 'Enter') {
             addItemHandler()
         }
@@ -51,5 +53,5 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
                     style={buttonStyles}>+</Button>
         </div>
     );
-};
+})
 
