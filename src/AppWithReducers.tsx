@@ -1,4 +1,4 @@
-import React, {useReducer, useState} from 'react';
+import React, {useReducer} from 'react';
 import './App.css';
 import {Todolist} from "./components/todolist/Todolist";
 import {v1} from "uuid";
@@ -11,70 +11,88 @@ import {
     addTodolistAC,
     changeTodolistFilterAC,
     changeTodolistTitleAC,
+    FilterValuesType,
     removeTodolistAC,
     todolistsReducer
 } from "./state/todolists-reducer";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./state/tasks-reducer";
-import {FilterValuesType, TaskType} from "./AppWithRedux";
+import {TaskPriorities, TaskStatuses, TaskType} from "./api/todolist-api";
 
+export type TasksStateType = {
+    [key: string]: Array<TaskType>
+}
 
 export const AppWithReducers = () => {
 
-    let todolistID1 = v1()
-    let todolistID2 = v1()
+    let todoListId1 = v1()
+    let todoListId2 = v1()
 
     let [todolists, dispatchToTodolists] = useReducer(todolistsReducer, [
-        {id: todolistID1, title: 'What to learn', filter: 'all'},
-        {id: todolistID2, title: 'What to buy', filter: 'all'},
+        {id: todoListId1, title: 'What to learn', filter: 'all', addedDate: '', order: 0},
+        {id: todoListId2, title: 'What to buy', filter: 'all', addedDate: '', order: 0},
     ])
 
     let [tasks, dispatchToTasks] = useReducer(tasksReducer, {
-        [todolistID1]: [
-            {id: v1(), title: 'HTML&CSS', isDone: true},
-            {id: v1(), title: 'JS', isDone: true},
-            {id: v1(), title: 'ReactJS', isDone: false},
-
+        [todoListId1]: [
+            {
+                id: v1(), title: 'HTML&CSS', status: TaskStatuses.Completed,
+                todoListId: todoListId1, description: '',
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low,
+            },
+            {
+                id: v1(), title: 'JS', status: TaskStatuses.Completed,
+                todoListId: todoListId1, description: '',
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low,
+            }
         ],
-        [todolistID2]: [
-            {id: v1(), title: 'Rest API', isDone: true},
-            {id: v1(), title: 'GraphQL', isDone: false},
+        [todoListId2]: [
+            {
+                id: v1(), title: 'Rest API', status: TaskStatuses.Completed,
+                todoListId: todoListId2, description: '',
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low
+            },
+            {
+                id: v1(), title: 'GraphQL', status: TaskStatuses.New,
+                todoListId: todoListId2, description: '',
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low
+            },
         ]
     })
 
 
-    const removeTask = (todolistId: string, taskId: string) => {
-        const action = removeTaskAC(todolistId, taskId)
+    const removeTask = (todoListId: string, taskId: string) => {
+        const action = removeTaskAC(todoListId, taskId)
         dispatchToTasks(action)
     }
-    const addTask = (todolistId: string, title: string) => {
-        const action = addTaskAC(todolistId, title)
+    const addTask = (todoListId: string, title: string) => {
+        const action = addTaskAC(todoListId, title)
         dispatchToTasks(action)
     }
-    const changeTaskStatus = (todolistId: string, taskId: string, isDone: boolean) => {
-        const action = changeTaskStatusAC(todolistId, taskId, isDone)
+    const changeTaskStatus = (todoListId: string, taskId: string, status: TaskStatuses) => {
+        const action = changeTaskStatusAC(todoListId, taskId, status)
         dispatchToTasks(action)
     }
-    const changeTaskTitle = (todolistId: string, taskId: string, title: string) => {
-        const action = changeTaskTitleAC(todolistId, taskId, title)
+    const changeTaskTitle = (todoListId: string, taskId: string, title: string) => {
+        const action = changeTaskTitleAC(todoListId, taskId, title)
         dispatchToTasks(action)
     }
 
-    const changeFilter = (todolistId: string, value: FilterValuesType) => {
-        const action = changeTodolistFilterAC(todolistId, value)
+    const changeFilter = (todoListId: string, value: FilterValuesType) => {
+        const action = changeTodolistFilterAC(todoListId, value)
         dispatchToTodolists(action)
     }
-    const removeTodolist = (todolistId: string) => {
-        const action = removeTodolistAC(todolistId)
+    const removeTodolist = (todoListId: string) => {
+        const action = removeTodolistAC(todoListId)
         dispatchToTodolists(action)
-        delete tasks[todolistId]
+        delete tasks[todoListId]
     }
     const addTodolist = (title: string) => {
         const action = addTodolistAC(title)
         dispatchToTodolists(action)
         dispatchToTasks(action)
     }
-    const changeTodolistTitle = (todolistId: string, title: string) => {
-        const action = changeTodolistTitleAC(todolistId, title)
+    const changeTodolistTitle = (todoListId: string, title: string) => {
+        const action = changeTodolistTitleAC(todoListId, title)
         dispatchToTodolists(action)
     }
 
@@ -89,10 +107,10 @@ export const AppWithReducers = () => {
                     {todolists.map((todolist) => {
                         let tasksForTodolist = tasks[todolist.id]
                         if (todolist.filter === 'active') {
-                            tasksForTodolist = tasks[todolist.id].filter((task: TaskType) => !task.isDone)
+                            tasksForTodolist = tasks[todolist.id].filter((task: TaskType) => task.status === TaskStatuses.New)
                         }
                         if (todolist.filter === 'completed') {
-                            tasksForTodolist = tasks[todolist.id].filter((task: TaskType) => task.isDone)
+                            tasksForTodolist = tasks[todolist.id].filter((task: TaskType) => task.status === TaskStatuses.Completed)
                         }
                         return (
                             <Grid item>

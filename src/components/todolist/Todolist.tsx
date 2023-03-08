@@ -1,28 +1,26 @@
 import React, {useCallback} from 'react';
-import {FilterValuesType, TaskType} from "../../AppWithRedux";
 import {AddItemForm} from "../addItemForm/AddItemForm";
 import {EditableSpan} from "../editableSpan/EditableSpan";
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {Task} from "../task/Task";
+import {TaskStatuses, TaskType} from "../../api/todolist-api";
+import {FilterValuesType} from "../../state/todolists-reducer";
 
 type TodolistPropsType = {
     id: string
     title: string
     tasks: Array<TaskType>
-    addTask: (todolistId: string, title: string) => void
-
-    removeTask: (todolistId: string, taskId: string) => void
-    changeTaskStatus: (todolistId: string, taskId: string, isDone: boolean) => void
-    changeTaskTitle: (todolistId: string, taskId: string, title: string) => void
-
-    changeFilter: (todolistId: string, value: FilterValuesType) => void
-
+    addTask: (todoListId: string, title: string) => void
+    removeTask: (todoListId: string, taskId: string) => void
+    changeTaskStatus: (todoListId: string, taskId: string, status: TaskStatuses) => void
+    changeTaskTitle: (todoListId: string, taskId: string, title: string) => void
+    changeFilter: (todoListId: string, value: FilterValuesType) => void
     filter: FilterValuesType
-    removeTodolist: (todolistId: string) => void
+    removeTodolist: (todoListId: string) => void
     addTodolist: (title: string) => void
-    changeTodolistTitle: (todolistId: string, title: string) => void
+    changeTodolistTitle: (todoListId: string, title: string) => void
 }
 
 export const Todolist: React.FC<TodolistPropsType> = (props) => {
@@ -45,6 +43,14 @@ export const Todolist: React.FC<TodolistPropsType> = (props) => {
         props.addTask(props.id, title)
     }, [props.addTask, props.id])
 
+    let tasksForTodolist = props.tasks
+    if (props.filter === 'active') {
+        tasksForTodolist = props.tasks.filter((task) => task.status === TaskStatuses.New)
+    }
+    if (props.filter === 'completed') {
+        tasksForTodolist = props.tasks.filter((task) => task.status === TaskStatuses.Completed)
+    }
+
     return (
         <div>
             <h3>
@@ -60,7 +66,7 @@ export const Todolist: React.FC<TodolistPropsType> = (props) => {
                     const removeTaskHandler = () => {
                         props.removeTask(props.id, task.id)
                     }
-                    const changeTaskStatusHandler = (taskId: string, newIsDoneValue: boolean) => {
+                    const changeTaskStatusHandler = (taskId: string, newIsDoneValue: TaskStatuses) => {
                         props.changeTaskStatus(props.id, taskId, newIsDoneValue)
                     }
                     const changeTaskTitleHandler = () => {
