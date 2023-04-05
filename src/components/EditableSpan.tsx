@@ -1,21 +1,21 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useCallback, useState} from 'react';
 
 type EditableSpanPropsType = {
     onChange: (title: string) => void
     title: string
 }
 
-export const EditableSpan = (props: EditableSpanPropsType) => {
+export const EditableSpan = React.memo((props: EditableSpanPropsType) => {
 
     const [title, setTitle] = useState(props.title)
     const [editMode, setEditMode] = useState(false)
-    const changeMode = () => {
+    const changeMode = useCallback(() => {
         setEditMode(!editMode)
         props.onChange(title)
-    }
-    const changeTitleHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    }, [props.onChange])
+    const changeTitleHandler = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.currentTarget.value)
-    }
+    }, [])
 
     return (
         <>
@@ -25,4 +25,4 @@ export const EditableSpan = (props: EditableSpanPropsType) => {
             }
         </>
     );
-};
+})

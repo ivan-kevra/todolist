@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import './App.css';
 import {TaskType, Todolist} from "./Todolist";
 import {AddItemForm} from "./components/AddItemForm";
@@ -46,9 +46,9 @@ export const AppWithRedux = () => {
         dispatch(RemoveTodolistAC(todolistId))
         delete tasks[todolistId]
     }
-    const addTodolist = (title: string) => {
+    const addTodolist = useCallback((title: string) => {
         dispatch(AddTodolistAC(title))
-    }
+    }, [])
     const changeTodolistFilter = (todolistId: string, value: FilterValuesType) => {
         dispatch(ChangeTodolistFilterAC(todolistId, value))
     }
@@ -60,21 +60,13 @@ export const AppWithRedux = () => {
         <div className={'App'}>
             <AddItemForm addItem={addTodolist}/>
             {todolists.map((todolist) => {
-                let allTodolistTasks = tasks[todolist.id]
-                let tasksForTodolist = allTodolistTasks
-                if (todolist.filter === 'completed') {
-                    tasksForTodolist = allTodolistTasks.filter((task) => task.isDone)
-                }
-                if (todolist.filter === 'active') {
-                    tasksForTodolist = allTodolistTasks.filter((task) => !task.isDone)
-                }
                 return (
                     <Todolist
                         key={todolist.id}
                         id={todolist.id}
                         title={todolist.title}
                         filter={todolist.filter}
-                        tasks={tasksForTodolist}
+                        tasks={tasks[todolist.id]}
                         removeTask={removeTask}
                         changeTodolistFilter={changeTodolistFilter}
                         addTask={addTask}
