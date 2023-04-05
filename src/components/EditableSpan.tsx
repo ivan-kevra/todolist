@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 
 type EditableSpanPropsType = {
+    onChange: (title: string) => void
     title: string
 }
 
@@ -10,6 +11,7 @@ export const EditableSpan = (props: EditableSpanPropsType) => {
     const [editMode, setEditMode] = useState(false)
     const changeMode = () => {
         setEditMode(!editMode)
+        props.onChange(title)
     }
     const changeTitleHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.currentTarget.value)
