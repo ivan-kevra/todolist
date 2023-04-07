@@ -1,5 +1,8 @@
 import React, {ChangeEvent} from 'react';
-import {EditableSpan} from "./EditableSpan";
+import {EditableSpan} from "../editableSpan/EditableSpan";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
+import Checkbox from '@mui/material/Checkbox';
 
 type TaskPropsType = {
     removeTask: (todolistId: string, taskId: string) => void
@@ -20,9 +23,11 @@ export const Task = (props: TaskPropsType) => {
     const changeTaskTitleHandler = () => props.changeTaskTitle(props.todolistId, props.taskId, props.title)
     return (
         <li className={props.isDone ? 'is-done' : ''}>
-            <input type="checkbox" checked={props.isDone} onChange={changeTaskStatusHandler}/>
+            <Checkbox color="primary" checked={props.isDone} onChange={changeTaskStatusHandler}/>
             <EditableSpan title={props.title} onChange={changeTaskTitleHandler}/>
-            <button onClick={removeTaskHandler}>X</button>
+            <IconButton aria-label="delete">
+                <DeleteIcon onClick={removeTaskHandler}/>
+            </IconButton>
         </li>
     );
 };

@@ -1,8 +1,12 @@
-import React, {ChangeEvent, useCallback} from 'react';
-import {FilterValuesType} from "./App";
-import {AddItemForm} from "./components/AddItemForm";
-import {EditableSpan} from "./components/EditableSpan";
-import {Task} from "./components/Task";
+import React, {useCallback} from 'react';
+import {FilterValuesType} from "../App";
+import {AddItemForm} from "./addItemForm/AddItemForm";
+import {EditableSpan} from "./editableSpan/EditableSpan";
+import {Task} from "./task/Task";
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Button from '@mui/material/Button';
+
 
 export type TaskType = {
     id: string
@@ -55,7 +59,9 @@ export const Todolist = React.memo((props: TodolistPropsType) => {
         <div>
             <h3>
                 <EditableSpan title={props.title} onChange={changeTodolistTitleHandler}/>
-                <button onClick={removeTodolistHandler}>X</button>
+                <IconButton aria-label="delete">
+                    <DeleteIcon onClick={removeTodolistHandler}/>
+                </IconButton>
             </h3>
 
             <div>
@@ -70,12 +76,14 @@ export const Todolist = React.memo((props: TodolistPropsType) => {
                 })}
             </ul>
             <div>
-                <button className={props.filter === 'all' ? 'active-filter' : ''} onClick={setAllHandler}>All</button>
-                <button className={props.filter === 'active' ? 'active-filter' : ''} onClick={setActiveHandler}>Active
-                </button>
-                <button className={props.filter === 'completed' ? 'active-filter' : ''}
+                <Button variant={props.filter === 'all' ? "outlined" : "contained"} color='secondary'
+                        onClick={setAllHandler}>All</Button>
+                <Button variant={props.filter === 'active' ? "outlined" : "contained"} color='success'
+                        onClick={setActiveHandler}>Active
+                </Button>
+                <Button variant={props.filter === 'completed' ? "outlined" : "contained"} color='error'
                         onClick={setCompletedHandler}>Completed
-                </button>
+                </Button>
             </div>
         </div>
     );

@@ -13,8 +13,20 @@ type ActionType = RemoveTaskACType
     | AddTodolistACType
     | RemoveTodolistACType
 
+const initialState: TasksStateType = {
+    ['1']: [
+        {id: v1(), title: 'HTML&CSS', isDone: true},
+        {id: v1(), title: 'JS', isDone: true},
+        {id: v1(), title: 'ReactJS', isDone: false},
 
-export const tasksReducer = (state: TasksStateType = {}, action: ActionType): TasksStateType => {
+    ],
+    ['2']: [
+        {id: v1(), title: 'Rest API', isDone: true},
+        {id: v1(), title: 'GraphQL', isDone: false},
+    ]
+}
+
+export const tasksReducer = (state: TasksStateType = initialState, action: ActionType): TasksStateType => {
 
     switch (action.type) {
         case "REMOVE-TASK":

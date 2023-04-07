@@ -1,4 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
@@ -30,12 +32,23 @@ export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
         setTitle('')
     }
 
+    const buttonSettings = {
+        maxWidth: '38px', maxHeight: '38px', minWidth: '38px', minHeight: '38px',
+    }
+
     return (
         <div>
-            <input value={title} onChange={setTitleHandler} onKeyDown={addTaskEnterHandler}
-                   className={error ? 'error' : ''}/>
-            <button onClick={addTaskHandler}>+</button>
-            {error && <div className={'error-message'}>{error}</div>}
+            <TextField id="outlined-basic"
+                       label={error ? "Title is required" : "Please type out..."}
+                       variant="outlined"
+                       value={title}
+                       onChange={setTitleHandler}
+                       onKeyDown={addTaskEnterHandler}
+                       error={!!error}
+                       size="small"
+            />
+            <Button variant="contained" onClick={addTaskHandler}
+                    style={buttonSettings}>+</Button>
         </div>
     );
 })
