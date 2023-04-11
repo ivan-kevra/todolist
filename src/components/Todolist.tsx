@@ -6,13 +6,8 @@ import {Task} from "./task/Task";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
+import {TaskStatuses, TaskType} from "../api/todolist-api";
 
-
-export type TaskType = {
-    id: string
-    title: string
-    isDone: boolean
-}
 
 type TodolistPropsType = {
     id: string
@@ -22,7 +17,7 @@ type TodolistPropsType = {
     removeTask: (todolistId: string, taskId: string) => void
     changeTodolistFilter: (todolistId: string, value: FilterValuesType) => void
     addTask: (todolistId: string, title: string) => void
-    changeTaskStatus: (todolistId: string, taskId: string, newIsDone: boolean) => void
+    changeTaskStatus: (todolistId: string, taskId: string, status: TaskStatuses) => void
     removeTodolist: (todolistId: string) => void
     changeTaskTitle: (todolistId: string, taskId: string, title: string) => void
     changeTodolistTitle: (todolistId: string, title: string) => void
@@ -49,10 +44,10 @@ export const Todolist = React.memo((props: TodolistPropsType) => {
 
     let tasksForTodolist = props.tasks
     if (props.filter === 'completed') {
-        tasksForTodolist = props.tasks.filter((task) => task.isDone)
+        tasksForTodolist = props.tasks.filter((task) => task.status === TaskStatuses.Completed)
     }
     if (props.filter === 'active') {
-        tasksForTodolist = props.tasks.filter((task) => !task.isDone)
+        tasksForTodolist = props.tasks.filter((task) => task.status === TaskStatuses.New)
     }
 
     return (
@@ -70,7 +65,7 @@ export const Todolist = React.memo((props: TodolistPropsType) => {
             <ul>
                 {tasksForTodolist.map((task) => {
 
-                    return <Task taskId={task.id} title={task.title} isDone={task.isDone} todolistId={props.id}
+                    return <Task taskId={task.id} title={task.title} status={task.status} todolistId={props.id}
                                  changeTaskTitle={props.changeTaskTitle} changeTaskStatus={props.changeTaskStatus}
                                  removeTask={props.removeTask} key={task.id}/>
                 })}

@@ -3,6 +3,7 @@ import {action} from "@storybook/addon-actions";
 
 import {Task} from './Task';
 import React from "react";
+import {TaskStatuses} from "../../api/todolist-api";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Task> = {
@@ -13,7 +14,7 @@ const meta: Meta<typeof Task> = {
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     args: {
         title: 'Task is done',
-        isDone: true,
+        status: TaskStatuses.Completed,
         changeTaskStatus: action('Change task status button was clicked'),
         changeTaskTitle: action('Change task title button was clicked'),
         removeTask: action('remove task button was clicked')
@@ -32,7 +33,7 @@ export const TaskIsNotDone: Story = {
     // More on args: https://storybook.js.org/docs/react/writing-stories/args
     args: {
         title: 'Task is not done',
-        isDone: false,
+        status: TaskStatuses.New,
     },
 };
 
