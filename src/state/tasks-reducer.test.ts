@@ -6,96 +6,96 @@ import {TaskPriorities, TaskStatuses} from "../api/todolist-api";
 
 let todolistId1: string
 let todolistId2: string
-let startState: TasksStateType =
+let startState: TasksStateType
 
-    beforeEach(() => {
-        todolistId1 = v1()
-        todolistId2 = v1()
-        startState = {
-            'todolistId1': [
-                {
-                    id: '1',
-                    title: 'CSS',
-                    status: TaskStatuses.New,
-                    todoListId: 'todolistId1',
-                    addedDate: '',
-                    deadline: '',
-                    startDate: '',
-                    order: 0,
-                    description: '',
-                    completed: false,
-                    priority: TaskPriorities.Low
-                },
-                {
-                    id: '2',
-                    title: 'JS',
-                    status: TaskStatuses.Completed,
-                    todoListId: 'todolistId1',
-                    addedDate: '',
-                    deadline: '',
-                    startDate: '',
-                    order: 0,
-                    description: '',
-                    completed: false,
-                    priority: TaskPriorities.Low
-                },
-                {
-                    id: '3',
-                    title: 'React',
-                    status: TaskStatuses.New,
-                    todoListId: 'todolistId1',
-                    addedDate: '',
-                    deadline: '',
-                    startDate: '',
-                    order: 0,
-                    description: '',
-                    completed: false,
-                    priority: TaskPriorities.Low
-                }
-            ],
-            'todolistId2': [
-                {
-                    id: '1',
-                    title: 'bread',
-                    status: TaskStatuses.New,
-                    todoListId: 'todolistId2',
-                    addedDate: '',
-                    deadline: '',
-                    startDate: '',
-                    order: 0,
-                    description: '',
-                    completed: false,
-                    priority: TaskPriorities.Low
-                },
-                {
-                    id: '2',
-                    title: 'milk',
-                    status: TaskStatuses.Completed,
-                    todoListId: 'todolistId2',
-                    addedDate: '',
-                    deadline: '',
-                    startDate: '',
-                    order: 0,
-                    description: '',
-                    completed: false,
-                    priority: TaskPriorities.Low
-                },
-                {
-                    id: '3',
-                    title: 'tea',
-                    status: TaskStatuses.New,
-                    todoListId: 'todolistId2',
-                    addedDate: '',
-                    deadline: '',
-                    startDate: '',
-                    order: 0,
-                    description: '',
-                    completed: false,
-                    priority: TaskPriorities.Low
-                }
-            ]
-        }
-    })
+beforeEach(() => {
+    todolistId1 = v1()
+    todolistId2 = v1()
+    startState = {
+        'todolistId1': [
+            {
+                id: '1',
+                title: 'CSS',
+                status: TaskStatuses.New,
+                todoListId: 'todolistId1',
+                addedDate: '',
+                deadline: '',
+                startDate: '',
+                order: 0,
+                description: '',
+                completed: false,
+                priority: TaskPriorities.Low
+            },
+            {
+                id: '2',
+                title: 'JS',
+                status: TaskStatuses.Completed,
+                todoListId: 'todolistId1',
+                addedDate: '',
+                deadline: '',
+                startDate: '',
+                order: 0,
+                description: '',
+                completed: false,
+                priority: TaskPriorities.Low
+            },
+            {
+                id: '3',
+                title: 'React',
+                status: TaskStatuses.New,
+                todoListId: 'todolistId1',
+                addedDate: '',
+                deadline: '',
+                startDate: '',
+                order: 0,
+                description: '',
+                completed: false,
+                priority: TaskPriorities.Low
+            }
+        ],
+        'todolistId2': [
+            {
+                id: '1',
+                title: 'bread',
+                status: TaskStatuses.New,
+                todoListId: 'todolistId2',
+                addedDate: '',
+                deadline: '',
+                startDate: '',
+                order: 0,
+                description: '',
+                completed: false,
+                priority: TaskPriorities.Low
+            },
+            {
+                id: '2',
+                title: 'milk',
+                status: TaskStatuses.Completed,
+                todoListId: 'todolistId2',
+                addedDate: '',
+                deadline: '',
+                startDate: '',
+                order: 0,
+                description: '',
+                completed: false,
+                priority: TaskPriorities.Low
+            },
+            {
+                id: '3',
+                title: 'tea',
+                status: TaskStatuses.New,
+                todoListId: 'todolistId2',
+                addedDate: '',
+                deadline: '',
+                startDate: '',
+                order: 0,
+                description: '',
+                completed: false,
+                priority: TaskPriorities.Low
+            }
+        ]
+    }
+})
 
 
 test('correct task should be deleted from correct array', () => {
@@ -105,13 +105,73 @@ test('correct task should be deleted from correct array', () => {
 
     expect(endState).toEqual({
         'todolistId1': [
-            {id: '1', title: 'CSS', status: TaskStatuses.New},
-            {id: '2', title: 'JS', status: TaskStatuses.Completed},
-            {id: '3', title: 'React', status: TaskStatuses.New}
+            {
+                id: '1',
+                title: 'CSS',
+                status: TaskStatuses.New,
+                todoListId: 'todolistId1',
+                addedDate: '',
+                deadline: '',
+                startDate: '',
+                order: 0,
+                description: '',
+                completed: false,
+                priority: TaskPriorities.Low
+            },
+            {
+                id: '2',
+                title: 'JS',
+                status: TaskStatuses.Completed,
+                todoListId: 'todolistId1',
+                addedDate: '',
+                deadline: '',
+                startDate: '',
+                order: 0,
+                description: '',
+                completed: false,
+                priority: TaskPriorities.Low
+            },
+            {
+                id: '3',
+                title: 'React',
+                status: TaskStatuses.New,
+                todoListId: 'todolistId1',
+                addedDate: '',
+                deadline: '',
+                startDate: '',
+                order: 0,
+                description: '',
+                completed: false,
+                priority: TaskPriorities.Low
+            }
         ],
         'todolistId2': [
-            {id: '1', title: 'bread', status: TaskStatuses.New},
-            {id: '3', title: 'tea', status: TaskStatuses.New}
+            {
+                id: '1',
+                title: 'bread',
+                status: TaskStatuses.New,
+                todoListId: 'todolistId2',
+                addedDate: '',
+                deadline: '',
+                startDate: '',
+                order: 0,
+                description: '',
+                completed: false,
+                priority: TaskPriorities.Low
+            },
+            {
+                id: '3',
+                title: 'tea',
+                status: TaskStatuses.New,
+                todoListId: 'todolistId2',
+                addedDate: '',
+                deadline: '',
+                startDate: '',
+                order: 0,
+                description: '',
+                completed: false,
+                priority: TaskPriorities.Low
+            }
         ]
     })
 })
