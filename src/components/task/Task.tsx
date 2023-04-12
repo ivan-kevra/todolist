@@ -27,8 +27,8 @@ export const Task = (props: TaskPropsType) => {
             <Checkbox color="primary" checked={props.status === TaskStatuses.Completed}
                       onChange={changeTaskStatusHandler}/>
             <EditableSpan title={props.title} onChange={changeTaskTitleHandler}/>
-            <IconButton aria-label="delete">
-                <DeleteIcon onClick={removeTaskHandler}/>
+            <IconButton aria-label="delete" onClick={removeTaskHandler}>
+                <DeleteIcon />
             </IconButton>
         </li>
     );
