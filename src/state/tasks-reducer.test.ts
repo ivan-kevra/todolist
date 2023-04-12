@@ -23,7 +23,6 @@ beforeEach(() => {
                 startDate: '',
                 order: 0,
                 description: '',
-                completed: false,
                 priority: TaskPriorities.Low
             },
             {
@@ -36,7 +35,6 @@ beforeEach(() => {
                 startDate: '',
                 order: 0,
                 description: '',
-                completed: false,
                 priority: TaskPriorities.Low
             },
             {
@@ -49,7 +47,6 @@ beforeEach(() => {
                 startDate: '',
                 order: 0,
                 description: '',
-                completed: false,
                 priority: TaskPriorities.Low
             }
         ],
@@ -64,7 +61,6 @@ beforeEach(() => {
                 startDate: '',
                 order: 0,
                 description: '',
-                completed: false,
                 priority: TaskPriorities.Low
             },
             {
@@ -77,7 +73,6 @@ beforeEach(() => {
                 startDate: '',
                 order: 0,
                 description: '',
-                completed: false,
                 priority: TaskPriorities.Low
             },
             {
@@ -90,7 +85,6 @@ beforeEach(() => {
                 startDate: '',
                 order: 0,
                 description: '',
-                completed: false,
                 priority: TaskPriorities.Low
             }
         ]
@@ -115,7 +109,6 @@ test('correct task should be deleted from correct array', () => {
                 startDate: '',
                 order: 0,
                 description: '',
-                completed: false,
                 priority: TaskPriorities.Low
             },
             {
@@ -128,7 +121,6 @@ test('correct task should be deleted from correct array', () => {
                 startDate: '',
                 order: 0,
                 description: '',
-                completed: false,
                 priority: TaskPriorities.Low
             },
             {
@@ -141,7 +133,6 @@ test('correct task should be deleted from correct array', () => {
                 startDate: '',
                 order: 0,
                 description: '',
-                completed: false,
                 priority: TaskPriorities.Low
             }
         ],
@@ -156,7 +147,6 @@ test('correct task should be deleted from correct array', () => {
                 startDate: '',
                 order: 0,
                 description: '',
-                completed: false,
                 priority: TaskPriorities.Low
             },
             {
@@ -169,7 +159,6 @@ test('correct task should be deleted from correct array', () => {
                 startDate: '',
                 order: 0,
                 description: '',
-                completed: false,
                 priority: TaskPriorities.Low
             }
         ]

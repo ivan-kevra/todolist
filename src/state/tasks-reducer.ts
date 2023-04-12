@@ -26,7 +26,6 @@ const initialState: TasksStateType = {
             startDate: '',
             order: 0,
             description: '',
-            completed: false,
             priority: TaskPriorities.Low
         },
         {
@@ -39,7 +38,6 @@ const initialState: TasksStateType = {
             startDate: '',
             order: 0,
             description: '',
-            completed: false,
             priority: TaskPriorities.Low
         },
         {
@@ -52,7 +50,7 @@ const initialState: TasksStateType = {
             startDate: '',
             order: 0,
             description: '',
-            completed: false,
+
             priority: TaskPriorities.Low
         },
     ],
@@ -67,7 +65,6 @@ const initialState: TasksStateType = {
             startDate: '',
             order: 0,
             description: '',
-            completed: false,
             priority: TaskPriorities.Low
         },
         {
@@ -80,7 +77,6 @@ const initialState: TasksStateType = {
             startDate: '',
             order: 0,
             description: '',
-            completed: false,
             priority: TaskPriorities.Low
         },
     ]
@@ -106,7 +102,6 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
                 startDate: '',
                 order: 0,
                 description: '',
-                completed: false,
                 priority: TaskPriorities.Low
             }
             return {
