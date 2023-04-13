@@ -19,16 +19,16 @@ export const Task = (props: TaskPropsType) => {
     const removeTaskHandler = () => props.removeTask(props.todolistId, props.taskId)
     const changeTaskStatusHandler = (event: ChangeEvent<HTMLInputElement>) => {
         let newIsDoneValue = event.currentTarget.checked
-        props.changeTaskStatus(props.todolistId, props.taskId, newIsDoneValue ? TaskStatuses.Completed : TaskStatuses.Completed)
+        props.changeTaskStatus(props.todolistId, props.taskId, newIsDoneValue ? TaskStatuses.Completed : TaskStatuses.New)
     }
-    const changeTaskTitleHandler = () => props.changeTaskTitle(props.todolistId, props.taskId, props.title)
+    const changeTaskTitleHandler = (title: string) => props.changeTaskTitle(props.todolistId, props.taskId, title)
     return (
         <li className={props.status === TaskStatuses.Completed ? 'is-done' : ''}>
             <Checkbox color="primary" checked={props.status === TaskStatuses.Completed}
                       onChange={changeTaskStatusHandler}/>
             <EditableSpan title={props.title} onChange={changeTaskTitleHandler}/>
             <IconButton aria-label="delete" onClick={removeTaskHandler}>
-                <DeleteIcon />
+                <DeleteIcon/>
             </IconButton>
         </li>
     );

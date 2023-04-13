@@ -1,17 +1,17 @@
 import {TasksStateType} from "../App";
-import {v1} from "uuid";
 import {AddTodolistACType, RemoveTodolistACType, SetTodolistsAC} from "./todolists-reducer";
-import {TaskPriorities, TaskStatuses, TaskType, todolistAPI, TodolistType} from "../api/todolist-api";
+import {TaskPriorities, TaskStatuses, TaskType, todolistAPI, UpdateTaskModelType} from "../api/todolist-api";
 import {Dispatch} from "redux";
+import {AppRootStateType} from "./store";
 
 type RemoveTaskACType = ReturnType<typeof RemoveTaskAC>
 type AddTaskACType = ReturnType<typeof AddTaskAC>
-type ChangeTaskStatusACType = ReturnType<typeof ChangeTaskStatusAC>
+type UpdateTaskACType = ReturnType<typeof updateTaskAC>
 type ChangeTaskTitleACType = ReturnType<typeof ChangeTaskTitleAC>
 type SetTasksACType = ReturnType<typeof SetTasksAC>
 type ActionType = RemoveTaskACType
     | AddTaskACType
-    | ChangeTaskStatusACType
+    | UpdateTaskACType
     | ChangeTaskTitleACType
     | AddTodolistACType
     | RemoveTodolistACType
@@ -33,12 +33,12 @@ export const tasksReducer = (state: TasksStateType = {}, action: ActionType): Ta
                 ...state,
                 [newTask.todoListId]: [newTask, ...state[newTask.todoListId]]
             }
-        case 'CHANGE-TASK-STATUS':
+        case 'UPDATE-TASK':
             return {
                 ...state,
                 [action.todolistId]: state[action.todolistId]
                     .map((task) => task.id === action.taskId
-                        ? {...task, status: action.status}
+                        ? {...task, ...action.model}
                         : task)
             }
         case 'CHANGE-TASK-TITLE':
@@ -52,7 +52,7 @@ export const tasksReducer = (state: TasksStateType = {}, action: ActionType): Ta
         case "ADD-TODOLIST":
             return {
                 ...state,
-                [action.todolistId]: []
+                [action.todolist.id]: []
             }
         case "REMOVE-TODOLIST": {
             const copyState = {...state}
@@ -82,8 +82,8 @@ export const RemoveTaskAC = (todolistId: string, taskId: string) => {
 export const AddTaskAC = (task: TaskType) => {
     return {type: 'ADD-TASK', task} as const
 }
-export const ChangeTaskStatusAC = (todolistId: string, taskId: string, status: TaskStatuses) => {
-    return {type: 'CHANGE-TASK-STATUS', todolistId, taskId, status} as const
+export const updateTaskAC = (todolistId: string, taskId: string, model: UpdateDomainTaskModelType) => {
+    return {type: 'UPDATE-TASK', todolistId, taskId, model} as const
 }
 export const ChangeTaskTitleAC = (todolistId: string, taskId: string, title: string) => {
     return {type: 'CHANGE-TASK-TITLE', todolistId, taskId, title} as const
@@ -115,6 +115,40 @@ export const addTaskTC = (todolistId: string, title: string) => {
         todolistAPI.createTask(todolistId, title)
             .then(res => {
                 dispatch(AddTaskAC(res.data.data.item))
+            })
+    }
+}
+
+export type UpdateDomainTaskModelType = {
+    title?: string
+    description?: string
+    status?: TaskStatuses
+    priority?: TaskPriorities
+    startDate?: string
+    deadline?: string
+}
+
+export const updateTaskTC = (todolistId: string, taskId: string, domainModel: UpdateDomainTaskModelType) => {
+    return (dispatch: Dispatch, getState: () => AppRootStateType) => {
+        const state = getState()
+        const task = state.tasks[todolistId].find(task => task.id === taskId)
+        if (!task) {
+            // throw new Error('task not fount in state')
+            console.warn('task not fount in state')
+            return
+        }
+        const apiModel: UpdateTaskModelType = {
+            title: task.title,
+            deadline: task.deadline,
+            priority: task.priority,
+            description: task.description,
+            startDate: task.startDate,
+            status: task.status,
+            ...domainModel
+        }
+        todolistAPI.updateTask(todolistId, taskId, apiModel)
+            .then(res => {
+                dispatch(updateTaskAC(todolistId, taskId, domainModel))
             })
     }
 }
