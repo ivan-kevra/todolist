@@ -12,7 +12,6 @@ export const App = () => {
             <Container fixed>
                 <TodolistsList/>
             </Container>
-
         </div>
     );
 }
