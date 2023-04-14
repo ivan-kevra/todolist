@@ -4,13 +4,15 @@ import {ButtonAppBar} from "../components/ButtonAppBar";
 import Container from '@mui/material/Container';
 import {TodolistsList} from "../features/todolistsList/TodolistsList";
 
-
-export const App = () => {
+type PropsType = {
+    demo?: boolean
+}
+export const App = ({demo = false}: PropsType) => {
     return (
         <div className={'App'}>
             <ButtonAppBar/>
             <Container fixed>
-                <TodolistsList/>
+                <TodolistsList demo={demo}/>
             </Container>
         </div>
     );

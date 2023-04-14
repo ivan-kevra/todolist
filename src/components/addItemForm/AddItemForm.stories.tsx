@@ -78,3 +78,10 @@ export const AddItemError: ComponentStory<typeof AddItemForm> = (args) => {
     );
 }
 
+export const AddItemDisabled: Story = {
+    // More on args: https://storybook.js.org/docs/react/writing-stories/args
+    args: {
+        addItem: action('Button clicked inside form'),
+        disabled: true
+    },
+};

@@ -4,9 +4,10 @@ import TextField from '@mui/material/TextField';
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
+    disabled?: boolean
 }
 
-export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
+export const AddItemForm = React.memo(({addItem, disabled = false}: AddItemFormPropsType) => {
 
     const [title, setTitle] = useState('')
     const [error, setError] = useState<null | string>('')
@@ -25,7 +26,7 @@ export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
     }
     const addTaskHandler = () => {
         if (title.trim() !== '') {
-            props.addItem(title.trim())
+            addItem(title.trim())
         } else {
             setError('title is required')
         }
@@ -38,7 +39,8 @@ export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
 
     return (
         <div>
-            <TextField id="outlined-basic"
+            <TextField disabled={disabled}
+                       id="outlined-basic"
                        label={error ? "Title is required" : "Please type out..."}
                        variant="outlined"
                        value={title}
@@ -47,7 +49,7 @@ export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
                        error={!!error}
                        size="small"
             />
-            <Button variant="contained" onClick={addTaskHandler}
+            <Button variant="contained" onClick={addTaskHandler} disabled={disabled}
                     style={buttonSettings}>+</Button>
         </div>
     );
