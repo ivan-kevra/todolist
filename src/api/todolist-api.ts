@@ -73,7 +73,7 @@ export type TaskType = {
     deadline: string
     addedDate: string
 }
-type ResponseType<T = {}> = {
+export type ResponseType<T = {}> = {
     data: {
         item: T
     }
