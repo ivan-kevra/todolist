@@ -1,11 +1,12 @@
 import axios from "axios";
+import {TaskType} from "../features/todolistsList/tasks-reducer";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.1/',
     withCredentials: true,
     headers: {
         // Не забываем заменить API-KEY на собственный
-        'API-KEY': '1cdd9f77-c60e-4af5-b194-659e4ebd5d41',
+        'API-KEY': '9a6c26a3-7c0a-407d-ba38-123ea04fe40d',
     },
 })
 
@@ -37,6 +38,18 @@ export const todolistAPI = {
     }
 }
 
+export type LoginParamsType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha?: string
+}
+export const authAPI = {
+    login(data: LoginParamsType) {
+        return instance.post<ResponseType<{ userId?: number }>>('/auth/login', data)
+    }
+}
+
 
 //types
 export type TodolistType = {
@@ -61,18 +74,6 @@ export enum TaskPriorities {
     Later = 4
 }
 
-export type TaskType = {
-    id: string
-    title: string
-    description: string
-    todoListId: string
-    order: number
-    status: TaskStatuses
-    priority: TaskPriorities
-    startDate: string
-    deadline: string
-    addedDate: string
-}
 export type ResponseType<T = {}> = {
     data: {
         item: T

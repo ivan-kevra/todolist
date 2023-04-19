@@ -7,11 +7,13 @@ import {v1} from "uuid";
 import {TaskPriorities, TaskStatuses} from "../../api/todolist-api";
 import {appReducer} from "../../app/app-reducer";
 import thunkMiddleWare from "redux-thunk";
+import {authReducer} from "../../features/Login/auth-reducer";
 
 const rootReducer = combineReducers({
     tasks: tasksReducer,
     todolists: todolistsReducer,
-    app: appReducer
+    app: appReducer,
+    auth: authReducer
 })
 
 const initialGlobalState = {
@@ -30,7 +32,8 @@ const initialGlobalState = {
                 order: 0,
                 description: '',
                 completed: false,
-                priority: TaskPriorities.Low
+                priority: TaskPriorities.Low,
+                entityStatus: 'idle'
             },
             {
                 id: v1(), title: 'JS', status: TaskStatuses.New,
@@ -41,7 +44,8 @@ const initialGlobalState = {
                 order: 0,
                 description: '',
                 completed: false,
-                priority: TaskPriorities.Low
+                priority: TaskPriorities.Low,
+                entityStatus: 'idle'
             }
         ],
         ['todolistId2']: [
@@ -54,7 +58,8 @@ const initialGlobalState = {
                 order: 0,
                 description: '',
                 completed: false,
-                priority: TaskPriorities.Low
+                priority: TaskPriorities.Low,
+                entityStatus: 'idle'
             },
             {
                 id: v1(), title: 'React Book', status: TaskStatuses.New,
@@ -65,13 +70,17 @@ const initialGlobalState = {
                 order: 0,
                 description: '',
                 completed: false,
-                priority: TaskPriorities.Low
+                priority: TaskPriorities.Low,
+                entityStatus: 'idle'
             }
         ]
     },
     app: {
         error: null,
         status: 'idle'
+    },
+    auth: {
+        isLoggedIn: false
     }
 }
 

@@ -1,7 +1,8 @@
-import {TaskType, todolistAPI, TodolistType} from "../../api/todolist-api";
+import {todolistAPI, TodolistType} from "../../api/todolist-api";
 import {Dispatch} from "redux";
 import {RequestStatusType, setAppErrorAC, setAppStatusAC} from "../../app/app-reducer";
 import {handlerServerNetworkError} from "../../utils/error-utils";
+import {TaskDomainType, TaskType} from "./tasks-reducer";
 
 
 export const todolistsReducer = (state: Array<TodolistDomainType> = [], action: ActionsType): Array<TodolistDomainType> => {
@@ -110,6 +111,6 @@ export type TodolistDomainType = TodolistType & {
 }
 export type FilterValuesType = 'all' | 'active' | 'completed'
 export type TasksStateType = {
-    [key: string]: TaskType[]
+    [key: string]: TaskDomainType[]
 }
 type ThunkDispatch = Dispatch<ActionsType>

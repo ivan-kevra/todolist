@@ -22,7 +22,8 @@ beforeEach(() => {
                 startDate: '',
                 order: 0,
                 description: '',
-                priority: TaskPriorities.Low
+                priority: TaskPriorities.Low,
+                entityStatus: 'idle'
             },
             {
                 id: '2',
@@ -34,7 +35,8 @@ beforeEach(() => {
                 startDate: '',
                 order: 0,
                 description: '',
-                priority: TaskPriorities.Low
+                priority: TaskPriorities.Low,
+                entityStatus: 'idle'
             },
             {
                 id: '3',
@@ -46,7 +48,8 @@ beforeEach(() => {
                 startDate: '',
                 order: 0,
                 description: '',
-                priority: TaskPriorities.Low
+                priority: TaskPriorities.Low,
+                entityStatus: 'idle'
             }
         ],
         'todolistId2': [
@@ -60,7 +63,8 @@ beforeEach(() => {
                 startDate: '',
                 order: 0,
                 description: '',
-                priority: TaskPriorities.Low
+                priority: TaskPriorities.Low,
+                entityStatus: 'idle'
             },
             {
                 id: '2',
@@ -72,7 +76,8 @@ beforeEach(() => {
                 startDate: '',
                 order: 0,
                 description: '',
-                priority: TaskPriorities.Low
+                priority: TaskPriorities.Low,
+                entityStatus: 'idle'
             },
             {
                 id: '3',
@@ -84,7 +89,8 @@ beforeEach(() => {
                 startDate: '',
                 order: 0,
                 description: '',
-                priority: TaskPriorities.Low
+                priority: TaskPriorities.Low,
+                entityStatus: 'idle'
             }
         ]
     }

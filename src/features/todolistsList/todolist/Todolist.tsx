@@ -5,15 +5,15 @@ import {Task} from "./task/Task";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
-import {TaskStatuses, TaskType} from "../../../api/todolist-api";
-import {fetchTasksTC} from '../tasks-reducer';
+import {TaskStatuses} from "../../../api/todolist-api";
+import {fetchTasksTC, TaskDomainType} from '../tasks-reducer';
 import {useAppDispatch} from "../../../app/store";
 import {FilterValuesType, TodolistDomainType} from "../todolists-reducer";
 
 
 type TodolistPropsType = {
     todolist: TodolistDomainType
-    tasks: Array<TaskType>
+    tasks: Array<TaskDomainType>
     removeTask: (todolistId: string, taskId: string) => void
     changeTodolistFilter: (todolistId: string, value: FilterValuesType) => void
     addTask: (todolistId: string, title: string) => void
@@ -64,7 +64,8 @@ export const Todolist = React.memo(({demo = false, ...props}: TodolistPropsType)
     return (
         <div>
             <h3>
-                <EditableSpan title={props.todolist.title} onChange={changeTodolistTitleHandler}/>
+                <EditableSpan title={props.todolist.title} onChange={changeTodolistTitleHandler}
+                              disabled={props.todolist.entityStatus === 'loading'}/>
                 <IconButton aria-label="delete" onClick={removeTodolistHandler}
                             disabled={props.todolist.entityStatus === 'loading'}>
                     <DeleteIcon/>
@@ -79,7 +80,8 @@ export const Todolist = React.memo(({demo = false, ...props}: TodolistPropsType)
 
                     return <Task taskId={task.id} title={task.title} status={task.status} todolistId={props.todolist.id}
                                  changeTaskTitle={props.changeTaskTitle} changeTaskStatus={props.changeTaskStatus}
-                                 removeTask={props.removeTask} key={task.id}/>
+                                 removeTask={props.removeTask} key={task.id} disabled={task.entityStatus === 'loading'}
+                    />
                 })}
             </ul>
             <div>

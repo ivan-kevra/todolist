@@ -13,6 +13,7 @@ type TaskPropsType = {
     status: TaskStatuses
     changeTaskStatus: (todolistId: string, taskId: string, status: TaskStatuses) => void
     changeTaskTitle: (todolistId: string, taskId: string, title: string) => void
+    disabled?: boolean
 }
 
 export const Task = (props: TaskPropsType) => {
@@ -26,7 +27,7 @@ export const Task = (props: TaskPropsType) => {
         <li className={props.status === TaskStatuses.Completed ? 'is-done' : ''}>
             <Checkbox color="primary" checked={props.status === TaskStatuses.Completed}
                       onChange={changeTaskStatusHandler}/>
-            <EditableSpan title={props.title} onChange={changeTaskTitleHandler}/>
+            <EditableSpan title={props.title} onChange={changeTaskTitleHandler} disabled={props.disabled}/>
             <IconButton aria-label="delete" onClick={removeTaskHandler}>
                 <DeleteIcon/>
             </IconButton>

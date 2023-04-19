@@ -2,10 +2,13 @@ import React, {useCallback, useEffect} from "react";
 import {useSelector} from "react-redux";
 import {AppRootStateType, useAppDispatch} from "../../app/store";
 import {
-    addTodolistTC, changeTodolistFilterAC, changeTodolistTitleTC,
+    addTodolistTC,
+    changeTodolistFilterAC,
+    changeTodolistTitleTC,
     fetchTodolistsTC,
     FilterValuesType,
-    removeTodolistTC, TasksStateType,
+    removeTodolistTC,
+    TasksStateType,
     TodolistDomainType
 } from "./todolists-reducer";
 import {addTaskTC, removeTaskTC, updateTaskTC} from "./tasks-reducer";
