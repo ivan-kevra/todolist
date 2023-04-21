@@ -9,11 +9,19 @@ import MenuIcon from '@mui/icons-material/Menu';
 import LinearProgress from '@mui/material/LinearProgress';
 import {ErrorSnackBar} from "./errorSnackBar/ErrorSnackBar";
 import {useSelector} from "react-redux";
-import {AppRootStateType} from "../app/store";
+import {AppRootStateType, useAppDispatch} from "../app/store";
 import {RequestStatusType} from "../app/app-reducer";
+import {useCallback} from "react";
+import {logOutTC} from '../features/Login/auth-reducer';
 
 export const ButtonAppBar = () => {
     const status = useSelector<AppRootStateType, RequestStatusType>((state) => state.app.status)
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
+    const dispatch = useAppDispatch()
+
+    const logOutHandler = useCallback(() => {
+        dispatch(logOutTC())
+    }, [])
 
     return (
         <Box sx={{flexGrow: 1}}>
@@ -32,7 +40,7 @@ export const ButtonAppBar = () => {
                     <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                         News
                     </Typography>
-                    <Button color="inherit">Login</Button>
+                    {isLoggedIn && <Button onClick={logOutHandler} color="inherit">Log out</Button>}
                 </Toolbar>
                 {status === 'loading' && <LinearProgress/>}
             </AppBar>

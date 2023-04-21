@@ -17,6 +17,7 @@ import Grid from "@mui/material/Grid";
 import {AddItemForm} from "../../components/addItemForm/AddItemForm";
 import Paper from "@mui/material/Paper";
 import {Todolist} from "./todolist/Todolist";
+import {Navigate} from "react-router-dom";
 
 
 type PropsType = {
@@ -26,10 +27,11 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
 
     const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>(state => state.todolists)
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        if (demo) {
+        if (demo || !isLoggedIn) {
             return
         }
         dispatch(fetchTodolistsTC())
@@ -61,6 +63,10 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
     const changeTodolistTitle = useCallback((id: string, title: string) => {
         dispatch(changeTodolistTitleTC(id, title))
     }, [])
+
+    if (!isLoggedIn) {
+        return <Navigate to={'/login'}/>
+    }
 
     return (
         <>

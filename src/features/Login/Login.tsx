@@ -25,11 +25,6 @@ export const Login = () => {
 
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
 
-    if (isLoggedIn) {
-        return <Navigate to={'/'}/>
-    }
-
-
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -56,6 +51,9 @@ export const Login = () => {
             // formik.resetForm();
         },
     })
+    if (isLoggedIn) {
+        return <Navigate to={'/'}/>
+    }
     return <Grid container justifyContent={'center'}>
         <Grid item justifyContent={'center'}>
             <form onSubmit={formik.handleSubmit}>
