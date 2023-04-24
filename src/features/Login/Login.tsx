@@ -48,20 +48,19 @@ export const Login = () => {
         },
         onSubmit: values => {
             dispatch(loginTC(values))
-            // formik.resetForm();
         },
     })
     if (isLoggedIn) {
-        return <Navigate to={'/'}/>
+        return <Navigate to={'/todolist'}/>
     }
     return <Grid container justifyContent={'center'}>
         <Grid item justifyContent={'center'}>
             <form onSubmit={formik.handleSubmit}>
-                <FormControl>
+                <FormControl>s
                     <FormLabel>
                         <p>To log in get registered
                             <a href={'https://social-network.samuraijs.com/'}
-                               target={'_blank'}> here
+                               target={'_blank'}> here new upd
                             </a>
                         </p>
                         <p>or use common test account credentials:</p>

@@ -35,7 +35,7 @@ export const App = ({demo = false}: PropsType) => {
             <Container fixed>
                 <Routes>
                     <Route path='*' element={<h1>404: PAGE NOT FOUND</h1>}/>
-                    <Route path='/' element={<TodolistsList demo={demo}/>}/>
+                    <Route path='/todolist' element={<TodolistsList demo={demo}/>}/>
                     <Route path='/login' element={<Login/>}/>
                 </Routes>
             </Container>

@@ -2,6 +2,7 @@ import {Dispatch} from 'redux'
 import {setAppErrorAC, setAppStatusAC} from '../../app/app-reducer'
 import {authAPI, LoginParamsType} from "../../api/todolist-api";
 import {handlerServerAppError, handlerServerNetworkError} from "../../utils/error-utils";
+import {clearTodolistsDataAC} from "../todolistsList/todolists-reducer";
 
 
 const initialState = {
@@ -44,6 +45,7 @@ export const logOutTC = () => (dispatch: Dispatch<ActionsType>) => {
             if (res.data.resultCode === 0) {
                 dispatch(setIsLoggedInAC(false))
                 dispatch(setAppStatusAC('succeeded'))
+                dispatch(clearTodolistsDataAC())
             } else {
                 handlerServerAppError(res.data, dispatch)
             }
@@ -57,3 +59,4 @@ export const logOutTC = () => (dispatch: Dispatch<ActionsType>) => {
 type ActionsType = ReturnType<typeof setIsLoggedInAC>
     | ReturnType<typeof setAppErrorAC>
     | ReturnType<typeof setAppStatusAC>
+    | ReturnType<typeof clearTodolistsDataAC>
