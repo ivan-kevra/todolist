@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useCallback} from 'react';
 import {FilterValuesType, TaskType} from "./App";
-import {AddItemForm} from "./components/AddItemForm";
-import {EditableSpan} from "./components/EditableSpan";
-import {Task} from "./components/Task";
+import {AddItemForm} from "./components/addItemForm/AddItemForm";
+import {EditableSpan} from "./components/editableSpan/EditableSpan";
+import {Task} from "./components/task/Task";
 
 type TodolistPropsType = {
     id: string

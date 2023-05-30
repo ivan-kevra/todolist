@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useCallback} from 'react';
-import {EditableSpan} from "./EditableSpan";
+import {EditableSpan} from "../editableSpan/EditableSpan";
 
 type TaskPropsType = {
     todolistId: string
