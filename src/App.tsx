@@ -105,7 +105,6 @@ export const App = () => {
                               changeTodolistTitle={changeTodolistTitle}/>
                 )
             })}
-
         </div>
     );
 }
