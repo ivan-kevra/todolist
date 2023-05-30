@@ -3,7 +3,7 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 type AddItemFormPropsType = {
     addItem: (title: string) => void
 }
-export const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
+export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo((props) => {
     const [title, setTitle] = useState('')
     const [error, setError] = useState<string | null>(null)
     const addTaskHandler = () => {
@@ -18,7 +18,9 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
         setTitle(event.currentTarget.value)
     }
     const onEnterHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-        setError('')
+        if (error !== null) {
+            setError('')
+        }
         if (event.key === 'Enter') {
             addTaskHandler()
         }
@@ -31,5 +33,5 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = (props) => {
             {error && <div className='error-message'>{error}</div>}
         </div>
     );
-};
+})
 

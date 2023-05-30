@@ -4,7 +4,7 @@ type EditableSpanPropsType = {
     title: string
     onChange: (newTitle: string) => void
 }
-export const EditableSpan: React.FC<EditableSpanPropsType> = (props) => {
+export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo((props) => {
     const [editMode, setEditMode] = useState<boolean>(false)
     const [title, setTitle] = useState(props.title)
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -27,5 +27,5 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = (props) => {
         </>
     )
         ;
-};
+})
 
