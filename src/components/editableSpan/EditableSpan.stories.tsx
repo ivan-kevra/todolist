@@ -12,9 +12,9 @@ const meta: Meta<typeof EditableSpan> = {
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     argTypes: {
-        value: {
-            description: 'Start value empty. Add value push button set string.'
-        },
+        // value: {
+        //     description: 'Start value empty. Add value push button set string.'
+        // },
         onChange: {
             description: 'Value EditableSpan changed',
 

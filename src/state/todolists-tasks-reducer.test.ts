@@ -1,10 +1,11 @@
-import {TasksStateType, TodolistType} from "../App";
-import {addTodolistAC, removeTodolistAC, todolistsReducer} from "./todolists-reducer";
+import {TasksStateType} from "../App";
+import {addTodolistAC, removeTodolistAC, TodolistDomainType, todolistsReducer} from "./todolists-reducer";
 import {tasksReducer} from "./tasks-reducer";
+import {TaskPriorities, TaskStatuses} from "../api/todolistAPI";
 
 test('ids should be equals', () => {
     const startTasksState: TasksStateType = {}
-    const startTodolistsState: Array<TodolistType> = []
+    const startTodolistsState: Array<TodolistDomainType> = []
 
     const action = addTodolistAC('new todolist')
 
@@ -15,20 +16,86 @@ test('ids should be equals', () => {
     const idFromTasks = keys[0]
     const idFromTodolists = endTodolistsState[0].id
 
-    expect(idFromTasks).toBe(action.todolistId)
-    expect(idFromTodolists).toBe(action.todolistId)
+    expect(idFromTasks).toBe(action.id)
+    expect(idFromTodolists).toBe(action.id)
 })
 test('property with todolistId should be deleted', () => {
     const startState: TasksStateType = {
         'todolistId1': [
-            {id: '1', title: 'CSS', isDone: false},
-            {id: '2', title: 'JS', isDone: true},
-            {id: '3', title: 'React', isDone: false}
+            {
+                id: '1',
+                title: 'CSS',
+                todoListId: 'todolistId1',
+                priority: TaskPriorities.Low,
+                status: TaskStatuses.New,
+                description: '',
+                order: 0,
+                startDate: '',
+                addedDate: '',
+                deadline: ''
+            },
+            {
+                id: '2',
+                title: 'JS',
+                todoListId: 'todolistId1',
+                priority: TaskPriorities.Low,
+                status: TaskStatuses.Completed,
+                description: '',
+                order: 0,
+                startDate: '',
+                addedDate: '',
+                deadline: ''
+            },
+            {
+                id: '3',
+                title: 'React',
+                todoListId: 'todolistId1',
+                priority: TaskPriorities.Low,
+                status: TaskStatuses.New,
+                description: '',
+                order: 0,
+                startDate: '',
+                addedDate: '',
+                deadline: ''
+            }
         ],
         'todolistId2': [
-            {id: '1', title: 'bread', isDone: false},
-            {id: '2', title: 'milk', isDone: true},
-            {id: '3', title: 'tea', isDone: false}
+            {
+                id: '1',
+                title: 'bread',
+                todoListId: 'todolistId2',
+                priority: TaskPriorities.Low,
+                status: TaskStatuses.New,
+                description: '',
+                order: 0,
+                startDate: '',
+                addedDate: '',
+                deadline: ''
+            },
+            {
+                id: '2',
+                title: 'milk',
+                todoListId: 'todolistId2',
+                priority: TaskPriorities.Low,
+                status: TaskStatuses.Completed,
+                description: '',
+                order: 0,
+                startDate: '',
+                addedDate: '',
+                deadline: ''
+            },
+            {
+                id: '3',
+                title: 'tea',
+                todoListId: 'todolistId2',
+                priority: TaskPriorities.Low,
+                status: TaskStatuses.New,
+                description: '',
+                order: 0,
+                startDate: '',
+                addedDate: '',
+                deadline: ''
+            }
         ]
     }
 
