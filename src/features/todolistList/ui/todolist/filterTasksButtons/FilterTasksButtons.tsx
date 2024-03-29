@@ -22,23 +22,23 @@ export const FilterTasksButtons = ({ todolist }: Props) => {
   return (
     <div className={style.container}>
       <Button
-        className={filter === "all" ? style.activeBUtton : ""}
         onClick={changeTodolistFilterHandler}
         data-name={"all"}
+        variant={filter === "all" ? "primary" : "secondary"}
       >
         All
       </Button>
       <Button
-        className={filter === "active" ? "btn-active" : ""}
         onClick={changeTodolistFilterHandler}
         data-name={"active"}
+        variant={filter === "active" ? "primary" : "secondary"}
       >
         Active
       </Button>
       <Button
-        className={filter === "completed" ? "btn-active" : ""}
         onClick={changeTodolistFilterHandler}
         data-name={"completed"}
+        variant={filter === "completed" ? "primary" : "secondary"}
       >
         Completed
       </Button>
