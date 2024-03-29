@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Task } from "./Task";
-import { ReduxStoreProviderDecorator } from "stories/decorators/ReduxStoreProviderDecorator";
+import { ReduxStoreProviderDecorator } from "@/stories/decorators/ReduxStoreProviderDecorator";
 
 const meta = {
   title: "TODOLISTS/Task",

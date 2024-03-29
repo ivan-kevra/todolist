@@ -1,5 +1,5 @@
-import { UpdateTaskType, tasksAPI } from "features/todolistList/api/tasks-api";
-import { todolistsAPI } from "features/todolistList/api/todolists-api";
+import { tasksAPI, UpdateTaskType } from "@/features/todolistList/api/tasks-api";
+import { todolistsAPI } from "@/features/todolistList/api/todolists-api";
 import { ChangeEvent, useEffect, useState } from "react";
 
 export default {

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { AddItemForm } from "./AddItemForm";
 import { ChangeEvent, FC, KeyboardEvent, memo, useState } from "react";
-import { action } from "@storybook/addon-actions";
 
 type Props = {
   onClick: (title: string) => void;
@@ -31,7 +30,7 @@ export const AddItemFormStory: Story = {
     disabled: false,
     addItem: (title: string) =>
       Promise.resolve().finally(() => {
-        action(title);
+        console.log(title);
       }),
   },
 };
@@ -87,7 +86,7 @@ const ErrorEmptyAddItemForm: FC<Props> = memo(({ onClick }) => {
   );
 });
 export const ErrorEmptyAddItemFormStory = () => (
-  <ErrorEmptyAddItemForm onClick={action("clicked add button")} disabled={false} />
+  <ErrorEmptyAddItemForm onClick={() => alert("clicked add button")} disabled={false} />
 );
 
 const ErrorLongAddItemForm: FC<Props> = memo(({ onClick }) => {
@@ -141,5 +140,5 @@ const ErrorLongAddItemForm: FC<Props> = memo(({ onClick }) => {
 });
 
 export const ErrorLongAddItemFormStory = () => (
-  <ErrorLongAddItemForm onClick={action("clicked add button")} disabled={false} />
+  <ErrorLongAddItemForm onClick={() => alert("clicked add button")} disabled={false} />
 );
