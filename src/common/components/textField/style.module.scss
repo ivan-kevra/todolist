@@ -1,0 +1,96 @@
+.container {
+  .title {
+    color: var(--Dark-100);
+  }
+  .inputContainer {
+    position: relative;
+    width: 100%;
+
+    .input {
+      all: unset;
+      height: 36px;
+      border-radius: 2px;
+      border: 1px solid var(--Dark-300);
+      padding: 6px 12px;
+      width: 100%;
+
+      box-sizing: border-box;
+      &::placeholder {
+        font-size: var(--font-size-m);
+      }
+      &:hover {
+        border: 1px solid var(--Dark-100);
+        background: var(--Dark-700);
+      }
+      &:focus {
+        border: 2px solid var(--Info-700);
+      }
+      &:active {
+        border: 1px solid var(--Light-100);
+        &::placeholder {
+          color: var(--Light-100);
+          font-size: var(--font-size-m);
+        }
+      }
+      &:disabled {
+        border: 1px solid var(--Dark-300);
+      }
+    }
+    .text {
+    }
+    .password {
+      padding: 6px 35px 6px 12px;
+    }
+    .search {
+      padding: 6px 12px 6px 30px;
+    }
+    .showPassword {
+      cursor: pointer;
+
+      position: absolute;
+      top: 17px;
+      right: 0px;
+
+      transform: translateY(-50%);
+
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+      padding: 0;
+
+      background: transparent;
+      border: 0;
+      outline: 0;
+
+      &:focus-visible {
+        outline: var(--outline-focus);
+      }
+    }
+  }
+}
+
+.error {
+  .inputContainer {
+    .input {
+      border: 1px solid var(--Danger-300);
+      color: var(--Danger-300);
+
+      &::placeholder {
+        color: var(--Danger-300);
+      }
+    }
+  }
+  .errorText {
+    color: var(--Danger-300);
+    text-align: start;
+  }
+}
+
+.searchIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}

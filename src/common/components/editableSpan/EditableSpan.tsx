@@ -1,4 +1,6 @@
 import { ChangeEvent, FC, memo, useState } from "react";
+import { TextField } from "../textField";
+import { Typography } from "@mui/material";
 
 type EditableSpanPropsType = {
   value: string;
@@ -27,11 +29,13 @@ export const EditableSpan: FC<EditableSpanPropsType> = memo(({ value, onClick, d
   };
   return editMode ? (
     <>
-      <input disabled={disabled} value={title} onBlur={activateViewMode} autoFocus onChange={changeTitleHandler} />
+      <TextField disabled={disabled} value={title} onBlur={activateViewMode} autoFocus onChange={changeTitleHandler} />
       {title.length === 0 && <div>title shouldn`d be empty</div>}
       {title.length > 99 && <div>maximum number of characters reached (100/100)</div>}
     </>
   ) : (
-    <span onDoubleClick={activateEditMode}>{title}</span>
+    <Typography onDoubleClick={activateEditMode} variant={"body1"}>
+      {title}
+    </Typography>
   );
 });

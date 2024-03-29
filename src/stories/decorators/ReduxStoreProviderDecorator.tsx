@@ -1,10 +1,11 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { combineReducers } from "redux";
-import { v1 } from "uuid";
+
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { TaskPriorities, TaskStatuses } from "common/enum/enum";
+import { v1 } from "uuid";
 import { BrowserRouter } from "react-router-dom";
+import { TaskPriorities, TaskStatuses } from "@/common/enum/enum";
 
 const todolistsSlice = createSlice({
   name: "todolists",

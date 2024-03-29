@@ -1,5 +1,8 @@
+import { Button } from "../button";
+import { TextField } from "../textField";
+import { Typography } from "../typography";
 import { useAddItemForm } from "./hooks/useAddItemForm";
-import style from "./AddItemForm.module.css";
+import style from "./style.module.scss";
 
 type Props = {
   addItem: (title: string) => Promise<unknown>;
@@ -9,19 +12,20 @@ export const AddItemForm = ({ addItem, disabled = false }: Props) => {
   const { title, error, onChangeHandler, onKeyDownHandler, isTaskDisabled, addItemHandler } = useAddItemForm(addItem);
 
   return (
-    <div>
-      <input
-        className={error === "" ? "" : style.error}
+    <div className={style.container}>
+      <TextField
         value={title}
         onChange={onChangeHandler}
         onKeyDown={onKeyDownHandler}
         placeholder="Enter new task"
         disabled={disabled}
       />
-      <button disabled={isTaskDisabled} onClick={addItemHandler}>
+      <Button disabled={isTaskDisabled} onClick={addItemHandler}>
         +
-      </button>
-      <div style={{ color: "red" }}> {error}</div>
+      </Button>
+      <Typography style={{ color: "red" }} variant="caption">
+        {error}
+      </Typography>
     </div>
   );
 };

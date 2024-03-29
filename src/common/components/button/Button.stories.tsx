@@ -1,24 +1,65 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "./Button";
+
+import { Button } from "./Index";
 
 const meta = {
-  title: "COMPONENTS/Button",
-  component: Button,
-  parameters: {
-    layout: "centered",
+  argTypes: {
+    variant: {
+      control: { type: "radio" },
+      options: ["primary", "secondary", "tertiary", "link"],
+    },
   },
+  component: Button,
   tags: ["autodocs"],
+  title: "Components/Button",
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const EmptyInput = () => {
-  return <Button isSubmitting={false} type="submit" />;
+export const Primary: Story = {
+  args: {
+    children: "Primary Button",
+    disabled: false,
+    variant: "primary",
+  },
 };
 
-export const EmptyInputStory = () => <EmptyInput />;
+export const Secondary: Story = {
+  args: {
+    children: "Secondary Button",
+    disabled: false,
+    variant: "secondary",
+  },
+};
+export const Tertiary: Story = {
+  args: {
+    children: "Tertiary Button",
+    disabled: false,
+    variant: "tertiary",
+  },
+};
+export const Link: Story = {
+  args: {
+    children: "Tertiary Button",
+    disabled: false,
+    variant: "link",
+  },
+};
 
-export const FilledInput: Story = {
-  args: { isSubmitting: false, type: "submit" },
+export const FullWidth: Story = {
+  args: {
+    children: "Full Width Button",
+    disabled: false,
+    fullWidth: true,
+    variant: "primary",
+  },
+};
+export const AsLink: Story = {
+  args: {
+    as: "a",
+    children: "Link that looks like a button",
+    href: "/?path=/story/components-button--as-link",
+    variant: "primary",
+  },
 };

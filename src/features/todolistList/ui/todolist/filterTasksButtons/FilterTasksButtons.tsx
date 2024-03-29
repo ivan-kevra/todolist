@@ -4,7 +4,8 @@ import {
   todolistsActions,
   FilterType,
 } from "@/features/todolistList/model/todolists/todolists.slice";
-import style from "./FilterTasksButtons.module.css";
+import style from "./style.module.scss";
+import { Button } from "@/common/components/button";
 
 type Props = {
   todolist: TodolistDomainType;
@@ -19,28 +20,28 @@ export const FilterTasksButtons = ({ todolist }: Props) => {
     changeTodolistFilter({ id, filter });
   };
   return (
-    <div>
-      <button
+    <div className={style.container}>
+      <Button
         className={filter === "all" ? style.activeBUtton : ""}
         onClick={changeTodolistFilterHandler}
         data-name={"all"}
       >
         All
-      </button>
-      <button
+      </Button>
+      <Button
         className={filter === "active" ? "btn-active" : ""}
         onClick={changeTodolistFilterHandler}
         data-name={"active"}
       >
         Active
-      </button>
-      <button
+      </Button>
+      <Button
         className={filter === "completed" ? "btn-active" : ""}
         onClick={changeTodolistFilterHandler}
         data-name={"completed"}
       >
         Completed
-      </button>
+      </Button>
     </div>
   );
 };

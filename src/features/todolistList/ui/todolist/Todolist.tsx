@@ -6,7 +6,6 @@ import { tasksThunks } from "../../model/tasks/tasks.slice";
 import { FilterTasksButtons } from "./filterTasksButtons/FilterTasksButtons";
 import { Tasks } from "./tasks/Tasks";
 import { TodolistTitle } from "./todolistTitle/TodolistTitle";
-import style from "./Todolist.module.css";
 
 type TodolistPropsType = {
   todolist: TodolistDomainType;
@@ -29,7 +28,7 @@ export const Todolist = ({ todolist, demo = false }: TodolistPropsType) => {
   };
 
   return (
-    <div className={style.container}>
+    <div>
       <TodolistTitle title={title} todolist={todolist} />
       <AddItemForm addItem={addTaskHandler} disabled={todolist.entityStatus === "loading"} />
       <Tasks todolist={todolist} />

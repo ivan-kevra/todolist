@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Input } from "./Input";
+import { TextField } from "./TextField";
 import { ChangeEvent, useState } from "react";
 
 const meta = {
-  title: "COMPONENTS/Input",
-  component: Input,
+  title: "COMPONENTS/TextField",
+  component: TextField,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof TextField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -17,9 +17,9 @@ type Story = StoryObj<typeof meta>;
 const EmptyInput = () => {
   const [value, setValue] = useState("");
   return (
-    <Input
+    <TextField
       value={value}
-      handleChange={(event: ChangeEvent<HTMLInputElement>) => setValue(event.currentTarget.value)}
+      onChange={(event: ChangeEvent<HTMLInputElement>) => setValue(event.currentTarget.value)}
       name="email"
       type="email"
     />
@@ -29,5 +29,5 @@ const EmptyInput = () => {
 export const EmptyInputStory = () => <EmptyInput />;
 
 export const FilledInput: Story = {
-  args: { value: "Some text", name: "password", type: "password", handleChange: () => {} },
+  args: { value: "Some text", name: "password", type: "password", onValueChange: () => {} },
 };

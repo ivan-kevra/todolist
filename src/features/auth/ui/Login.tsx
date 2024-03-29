@@ -1,12 +1,11 @@
-import { Input } from "../../../common/components/input/Input";
-import { Button } from "../../../stories/Button";
+import { Input, TextField } from "../../../common/components/textField/TextField";
 import { LoginParamsType } from "../api/auth.api";
 import { useLogin } from "../lib/useLogin";
 import { Navigate } from "react-router-dom";
 import { Formik } from "formik";
-import style from "./style.module.scss";
 import copy from "./icons/copy.svg";
-
+import { Button } from "@/common/components/button/Button";
+import style from "./style.module.scss";
 export type FormValues = Omit<LoginParamsType, "captcha">;
 export type FormikErrorType = Omit<FormValues, "rememberMe">;
 
@@ -40,12 +39,12 @@ export const Login = () => {
             <div className={style.form}>
               <div className={style.inputContainer}>
                 E-mail
-                <Input type="email" name="email" handleChange={handleChange} value={values.email} />
+                <TextField type="email" name="email" onValueChange={handleChange} value={values.email} />
                 {errors.email && touched.email && errors.email}
               </div>
               <div className={style.inputContainer}>
                 Password
-                <Input value={values.password} type="password" name="password" handleChange={handleChange} />
+                <TextField value={values.password} type="password" name="password" onValueChange={handleChange} />
                 {errors.password && touched.password && errors.password}
               </div>
               <div className={style.rememberMe}>
@@ -58,7 +57,7 @@ export const Login = () => {
                   className={style.checkbox}
                 />
               </div>
-              <Button isSubmitting={isSubmitting} type="submit" />
+              <Button disabled={isSubmitting} type="submit" />
             </div>
           </form>
         )}
