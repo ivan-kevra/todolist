@@ -1,0 +1,58 @@
+@import "../../../variables.scss";
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .sidebar {
+    height: 100vh;
+    width: 50%;
+    background: $backImage;
+    background-size: 100%;
+    position: relative;
+    .h1 {
+      @include custom-text(128px, 700, $white);
+      position: absolute;
+      right: 136px;
+      top: 290px;
+    }
+    .h2 {
+      @include custom-text(40px, 400, $white);
+      position: absolute;
+      right: 137px;
+      top: 261px;
+    }
+  }
+  .formContainer {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 66px;
+    .header {
+      width: 308px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      @include custom-text(20px, 400);
+    }
+    .form {
+      @include custom-text(20px, 400);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 32px;
+      .inputContainer {
+        width: 329px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+  }
+}
