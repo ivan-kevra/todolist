@@ -1,15 +1,10 @@
-.task {
-  font-weight: bold;
-}
-.task-done {
-  text-decoration: line-through;
-  opacity: 0.5;
-}
-
 .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  border: 1px solid var(--Light-100);
+
+  gap: 8px;
+  margin: 24px;
+  background-color: var(--Primary-900);
+  border-radius: 8px;
 }

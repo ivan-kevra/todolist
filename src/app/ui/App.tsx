@@ -10,6 +10,7 @@ import { TodolistList } from "../../features/todolistList/ui/TodolistList";
 import { isInitializedSelector } from "../model/app.selector";
 import CircularProgress from "@mui/joy/CircularProgress";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { Header } from "@/common/header";
 
 type Props = {
   demo: boolean;
@@ -33,6 +34,7 @@ export const App: FC<Props> = ({ demo = false }) => {
 
   return (
     <>
+      {/* {isLoggedin && <Button onClick={logOutHandler}>Log out</Button>} */}
       <Routes>
         <Route path="/" element={<TodolistList demo={demo} />} />
         <Route path="/login" element={<Login />} />
@@ -41,7 +43,6 @@ export const App: FC<Props> = ({ demo = false }) => {
       </Routes>
       <Loader />
       <ErrorSnackbar />
-      {isLoggedin && <button onClick={logOutHandler}>Log out</button>}
     </>
   );
 };

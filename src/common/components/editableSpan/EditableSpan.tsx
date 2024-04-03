@@ -1,6 +1,9 @@
 import { ChangeEvent, FC, memo, useState } from "react";
 import { TextField } from "../textField";
 import { Typography } from "@mui/material";
+import edit from "./icons/edit.svg";
+import { Button } from "../button";
+import style from "./style.module.scss";
 
 type EditableSpanPropsType = {
   value: string;
@@ -34,8 +37,11 @@ export const EditableSpan: FC<EditableSpanPropsType> = memo(({ value, onClick, d
       {title.length > 99 && <div>maximum number of characters reached (100/100)</div>}
     </>
   ) : (
-    <Typography onDoubleClick={activateEditMode} variant={"body1"}>
-      {title}
-    </Typography>
+    <div className={style.text}>
+      <Typography variant={"body1"}>{title}</Typography>
+      <Button onClick={activateEditMode} variant="tertiary">
+        <img src={edit} />
+      </Button>
+    </div>
   );
 });

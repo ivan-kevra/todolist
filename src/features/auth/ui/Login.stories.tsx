@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { IsLoggedInReduxStoreProviderDecorator } from "stories/decorators/ReduxStoreProviderDecorator";
+
 import { Login } from "./Login";
+import { IsLoggedInReduxStoreProviderDecorator } from "@/stories/decorators/ReduxStoreProviderDecorator";
 
 const meta = {
   title: "LOGIN/Login",
