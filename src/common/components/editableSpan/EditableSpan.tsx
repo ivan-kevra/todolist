@@ -1,17 +1,16 @@
 import { ChangeEvent, FC, memo, useState } from "react";
 import { TextField } from "../textField";
 import { Typography } from "@mui/material";
-import edit from "./icons/edit.svg";
-import { Button } from "../button";
 import style from "./style.module.scss";
 
 type EditableSpanPropsType = {
   value: string;
   onClick: (value: string) => void;
   disabled?: boolean;
+  variant: string;
 };
 
-export const EditableSpan: FC<EditableSpanPropsType> = memo(({ value, onClick, disabled = false }) => {
+export const EditableSpan: FC<EditableSpanPropsType> = memo(({ value, onClick, disabled = false, variant }) => {
   const [editMode, setEditMode] = useState(false);
   const [title, setTitle] = useState<string>(value);
 
@@ -32,16 +31,20 @@ export const EditableSpan: FC<EditableSpanPropsType> = memo(({ value, onClick, d
   };
   return editMode ? (
     <>
-      <TextField disabled={disabled} value={title} onBlur={activateViewMode} autoFocus onChange={changeTitleHandler} />
+      <TextField
+        disabled={disabled}
+        value={title}
+        onBlur={activateViewMode}
+        autoFocus
+        onChange={changeTitleHandler}
+        className={style.input}
+      />
       {title.length === 0 && <div>title shouldn`d be empty</div>}
       {title.length > 99 && <div>maximum number of characters reached (100/100)</div>}
     </>
   ) : (
-    <div className={style.text}>
-      <Typography variant={"body1"}>{title}</Typography>
-      <Button onClick={activateEditMode} variant="tertiary">
-        <img src={edit} />
-      </Button>
-    </div>
+    <Typography variant={variant} onDoubleClick={activateEditMode}>
+      {title}
+    </Typography>
   );
 });

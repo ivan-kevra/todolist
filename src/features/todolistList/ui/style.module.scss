@@ -1,4 +1,11 @@
 .container {
-  // background: url("../../../common/assets/background.png");
-  // background-size: cover;
+  padding: 24px;
+  .todolists {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 12px;
+    border: 1px solid yellow;
+    flex-wrap: wrap;
+  }
 }

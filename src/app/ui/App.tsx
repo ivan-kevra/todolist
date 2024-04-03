@@ -35,6 +35,7 @@ export const App: FC<Props> = ({ demo = false }) => {
   return (
     <>
       {/* {isLoggedin && <Button onClick={logOutHandler}>Log out</Button>} */}
+      <Header />
       <Routes>
         <Route path="/" element={<TodolistList demo={demo} />} />
         <Route path="/login" element={<Login />} />

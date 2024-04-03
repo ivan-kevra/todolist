@@ -27,18 +27,14 @@ export const Tasks = ({ todolist }: Props) => {
 
   const filteredTasks: Array<TaskDomainType> = getTasksForRender(tasks, todolist.filter);
 
-  return (
-    <>
-      {filteredTasks?.map((task: TaskDomainType) => {
-        return (
-          <Task
-            key={task.id}
-            taskId={task.id}
-            todolistId={todolist.id}
-            disabled={todolist.entityStatus === "loading" || task.entityStatus === "loading"}
-          />
-        );
-      })}
-    </>
-  );
+  return filteredTasks?.map((task: TaskDomainType) => {
+    return (
+      <Task
+        key={task.id}
+        taskId={task.id}
+        todolistId={todolist.id}
+        disabled={todolist.entityStatus === "loading" || task.entityStatus === "loading"}
+      />
+    );
+  });
 };

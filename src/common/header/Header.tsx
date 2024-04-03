@@ -14,19 +14,19 @@ export const Header = () => {
   return (
     <div className={style.container}>
       <div className={style.buttons}>
-        <Button variant="white">
+        <Button variant="link">
           <img src={tasks} />
-          <Typography variant="header">Tasks</Typography>
+          <Typography variant="body1">Tasks</Typography>
         </Button>
 
-        <Button variant="white">
+        <Button variant="link">
           <img src={calendar} />
-          <Typography variant="header">Calendar</Typography>
+          <Typography variant="body1">Calendar</Typography>
         </Button>
       </div>
 
-      <Button onClick={logOutHandler} variant="white">
-        <Typography variant="header">Log out</Typography>
+      <Button onClick={logOutHandler} variant="secondary">
+        <Typography variant="body1">Log out</Typography>
       </Button>
     </div>
   );

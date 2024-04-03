@@ -36,9 +36,11 @@ export const TodolistList: FC<Props> = ({ demo = false }) => {
 
       <AddItemForm addItem={addTodolist} />
 
-      {todolists.map((todolist: TodolistDomainType) => (
-        <Todolist key={todolist.id} todolist={todolist} demo={demo} />
-      ))}
+      <div className={style.todolists}>
+        {todolists.map((todolist: TodolistDomainType) => (
+          <Todolist key={todolist.id} todolist={todolist} demo={demo} />
+        ))}
+      </div>
     </div>
   );
 };

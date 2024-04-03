@@ -19,8 +19,8 @@ export const Task = ({ taskId, todolistId, disabled }: Props) => {
   return (
     <li key={task.id} className={style.container}>
       <Checkbox checked={task.status ? true : false} onValueChange={setStatus} />
-      <EditableSpan value={task.title} onClick={changeTaskTitle} disabled={disabled} />
-      <Button onClick={removeTaskHandler} disabled={disabled || task.entityStatus === "loading"} variant="tertiary">
+      <EditableSpan value={task.title} onClick={changeTaskTitle} disabled={disabled} variant="body2" />
+      <Button onClick={removeTaskHandler} disabled={disabled || task.entityStatus === "loading"} variant="secondary">
         X
       </Button>
     </li>
