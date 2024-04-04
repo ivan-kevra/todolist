@@ -13,7 +13,7 @@ export const Login = () => {
   const { initialValues, validate, onSubmit, isLoggedIn } = useLogin();
 
   if (isLoggedIn) {
-    return <Navigate to={"/"} />;
+    return <Navigate to={"/todolist"} />;
   }
 
   return (

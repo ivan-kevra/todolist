@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ChangeEvent, FC, KeyboardEvent, memo, useState } from "react";
-import { action } from "@storybook/addon-actions";
 import { EditableSpan } from "./EditableSpan";
 
 const meta = {
@@ -24,6 +22,11 @@ type Story = StoryObj<typeof meta>;
 
 export const EditableSpanStory: Story = {
   args: {
-    value: "editable span",
+    onClick: (value: string) => {
+      console.log(value);
+    },
+    value: "value",
+    variant: "body1",
+    disabled: false,
   },
 };

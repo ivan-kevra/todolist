@@ -21,7 +21,7 @@ export const TodolistTitle = ({ title, todolist }: Props) => {
         onClick={changeTodolistTitleHandler}
         value={title}
         disabled={todolist.entityStatus === "loading"}
-        variant="h5"
+        variant={"h2"}
       />
       <Button
         onClick={() => removeTodolist({ id: todolist.id })}

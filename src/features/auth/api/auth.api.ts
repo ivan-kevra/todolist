@@ -1,4 +1,4 @@
-import { BaseResponseType } from "common/types/types";
+import { BaseResponseType } from "@/common/types/types";
 import { instance } from "../../../common/api/api";
 
 export const authAPI = {

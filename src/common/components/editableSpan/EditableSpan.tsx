@@ -1,13 +1,14 @@
 import { ChangeEvent, FC, memo, useState } from "react";
 import { TextField } from "../textField";
-import { Typography } from "@mui/material";
+
 import style from "./style.module.scss";
+import { Typography, TypographyVariantType } from "../typography";
 
 type EditableSpanPropsType = {
   value: string;
   onClick: (value: string) => void;
   disabled?: boolean;
-  variant: string;
+  variant: TypographyVariantType;
 };
 
 export const EditableSpan: FC<EditableSpanPropsType> = memo(({ value, onClick, disabled = false, variant }) => {

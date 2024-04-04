@@ -1,6 +1,6 @@
+import { appActions } from "@/app/model/app.slice";
 import { Dispatch } from "@reduxjs/toolkit";
-import { appActions } from "app/model/app.slice";
-import { BaseResponseType } from "common/types/types";
+import { BaseResponseType } from "../types/types";
 
 /**
  * Server application error handler.

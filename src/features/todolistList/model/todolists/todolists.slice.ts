@@ -9,11 +9,14 @@ const slice = createSlice({
   name: "todolists",
   initialState: [] as TodolistDomainType[],
   reducers: {
-    changeTodolistFilter: (state, action: PayloadAction<{ id: string; filter: FilterType }>) => {
+    changeTodolistFilter: (state: TodolistDomainType[], action: PayloadAction<{ id: string; filter: FilterType }>) => {
       const index = state.findIndex((todolist) => todolist.id === action.payload.id);
       if (index !== -1) state[index].filter = action.payload.filter;
     },
-    setEntityStatus: (state, action: PayloadAction<{ id: string; entityStatus: RequestStatusType }>) => {
+    setEntityStatus: (
+      state: TodolistDomainType[],
+      action: PayloadAction<{ id: string; entityStatus: RequestStatusType }>,
+    ) => {
       const index = state.findIndex((todolist) => todolist.id === action.payload.id);
       if (index !== -1) state[index].entityStatus = action.payload.entityStatus;
     },
@@ -23,7 +26,7 @@ const slice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(setTodolists.fulfilled, (state, action) => {
+      .addCase(setTodolists.fulfilled, (_state, action) => {
         return action.payload.todolists.map((todolist: TodolistType) => ({
           ...todolist,
           filter: "all",

@@ -1,8 +1,9 @@
 import { v1 } from "uuid";
 import { TasksStateType, tasksReducer, tasksThunks } from "./tasks.slice";
 import { todolistsThunks } from "../todolists/todolists.slice";
-import { TaskPriorities, TaskStatuses } from "common/enum/enum";
+
 import { TaskDomainType, TodolistType } from "../../api/todolists-api";
+import { TaskPriorities, TaskStatuses } from "@/common/enum/enum";
 
 let startState: TasksStateType;
 

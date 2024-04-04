@@ -1,5 +1,5 @@
-import { appActions } from "app/model/app.slice";
-import { AppDispatch } from "app/model/store";
+import { appActions } from "@/app/model/app.slice";
+import { AppDispatch } from "@/app/model/store";
 import axios from "axios";
 
 export const handleServerNetworkError = (dispatch: AppDispatch, err: unknown): void => {

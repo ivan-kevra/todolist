@@ -19,11 +19,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "types": ["node"],
+    "types": ["node", "jest"],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
   "include": ["src"],
+
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -8,19 +8,7 @@ type Props<T extends ElementType> = {
   as?: T;
   children?: ReactNode;
   className?: string;
-  variant:
-    | "body1"
-    | "body2"
-    | "caption"
-    | "h1"
-    | "h2"
-    | "h3"
-    | "h4"
-    | "link1"
-    | "link2"
-    | "overline"
-    | "subtitle1"
-    | "subtitle2";
+  variant: TypographyVariantType;
 };
 
 export const Typography = <T extends ElementType = "p">(
@@ -33,3 +21,17 @@ export const Typography = <T extends ElementType = "p">(
 
   return <Component className={classNames} {...rest} />;
 };
+
+export type TypographyVariantType =
+  | "body1"
+  | "body2"
+  | "caption"
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "link1"
+  | "link2"
+  | "overline"
+  | "subtitle1"
+  | "subtitle2";

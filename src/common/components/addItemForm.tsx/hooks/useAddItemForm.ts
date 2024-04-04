@@ -1,4 +1,4 @@
-import { BaseResponseType } from "common/types/types";
+import { BaseResponseType } from "@/common/types/types";
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 
 export const useAddItemForm = (addItem: (title: string) => Promise<unknown>) => {
@@ -8,7 +8,7 @@ export const useAddItemForm = (addItem: (title: string) => Promise<unknown>) => 
   const addItemHandler = () => {
     if (title.trim() !== "") {
       addItem(title)
-        .then((res) => {
+        .then(() => {
           setTitle("");
         })
         .catch((err: BaseResponseType) => {

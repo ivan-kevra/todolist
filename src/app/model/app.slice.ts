@@ -41,7 +41,7 @@ const slice = createSlice({
       .addMatcher(isFulfilled, (state) => {
         state.status = "succeeded";
       })
-      .addMatcher(isAnyOf(authThunks.initializeApp.fulfilled, authThunks.initializeApp.rejected), (state, action) => {
+      .addMatcher(isAnyOf(authThunks.initializeApp.fulfilled, authThunks.initializeApp.rejected), (state) => {
         state.isInitialized = true;
       });
   },

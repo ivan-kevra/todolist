@@ -13,6 +13,7 @@ export const useLogin = () => {
   const initialValues = {
     email: "",
     password: "",
+    rememberMe: false,
   };
   const validate = (values: LoginParamsType) => {
     const errors: FormikErrorType = {
