@@ -34,7 +34,7 @@ export const TodolistList: FC<Props> = ({ demo = false }) => {
     <div className={style.container}>
       {/* <Header /> */}
 
-      <AddItemForm addItem={addTodolist} />
+      <AddItemForm addItem={addTodolist} placeholder="Enter new to do" />
 
       <div className={style.todolists}>
         {todolists.map((todolist: TodolistDomainType) => (

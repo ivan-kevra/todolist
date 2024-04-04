@@ -5,6 +5,7 @@ import { LoginParamsType } from "../api/auth.api";
 import { authThunks } from "../model/auth.slice";
 import { isLoggedinSelector } from "../model/login.selector";
 import { FormikErrorType, FormValues } from "../ui/Login";
+import { FormikHelpers } from "formik/dist/types";
 
 export const useLogin = () => {
   const isLoggedIn = useAppSelector(isLoggedinSelector);
@@ -12,7 +13,6 @@ export const useLogin = () => {
   const initialValues = {
     email: "",
     password: "",
-    rememberMe: false,
   };
   const validate = (values: LoginParamsType) => {
     const errors: FormikErrorType = {

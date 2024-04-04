@@ -31,7 +31,11 @@ export const Todolist = ({ todolist, demo = false }: TodolistPropsType) => {
   return (
     <div className={style.container}>
       <TodolistTitle title={title} todolist={todolist} />
-      <AddItemForm addItem={addTaskHandler} disabled={todolist.entityStatus === "loading"} />
+      <AddItemForm
+        addItem={addTaskHandler}
+        disabled={todolist.entityStatus === "loading"}
+        placeholder="Enter new task"
+      />
       <Tasks todolist={todolist} />
       <FilterTasksButtons todolist={todolist} />
     </div>

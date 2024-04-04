@@ -4,7 +4,6 @@ import { useActions } from "../hooks/useActions";
 import style from "./style.module.scss";
 import { Typography } from "../components/typography";
 import tasks from "./icons/tasks.svg";
-import calendar from "./icons/calendar.svg";
 
 export const Header = () => {
   const { logout } = useActions(authThunks);
@@ -13,17 +12,10 @@ export const Header = () => {
   };
   return (
     <div className={style.container}>
-      <div className={style.buttons}>
-        <Button variant="link">
-          <img src={tasks} />
-          <Typography variant="body1">Tasks</Typography>
-        </Button>
-
-        <Button variant="link">
-          <img src={calendar} />
-          <Typography variant="body1">Calendar</Typography>
-        </Button>
-      </div>
+      <Typography variant="h1" className={style.logo}>
+        <img src={tasks} />
+        Task manager
+      </Typography>
 
       <Button onClick={logOutHandler} variant="secondary">
         <Typography variant="body1">Log out</Typography>

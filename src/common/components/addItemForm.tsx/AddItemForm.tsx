@@ -7,8 +7,9 @@ import style from "./style.module.scss";
 type Props = {
   addItem: (title: string) => Promise<unknown>;
   disabled?: boolean | undefined;
+  placeholder?: string;
 };
-export const AddItemForm = ({ addItem, disabled = false }: Props) => {
+export const AddItemForm = ({ addItem, disabled = false, placeholder }: Props) => {
   const { title, error, onChangeHandler, onKeyDownHandler, isTaskDisabled, addItemHandler } = useAddItemForm(addItem);
 
   return (
@@ -17,7 +18,7 @@ export const AddItemForm = ({ addItem, disabled = false }: Props) => {
         value={title}
         onChange={onChangeHandler}
         onKeyDown={onKeyDownHandler}
-        placeholder="Enter new task"
+        placeholder={placeholder}
         disabled={disabled}
       />
       <Button disabled={isTaskDisabled} onClick={addItemHandler}>

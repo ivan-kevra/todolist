@@ -17,6 +17,7 @@ export type CheckboxProps = {
   onValueChange?: (checked: boolean) => void;
   position?: "left";
   required?: boolean;
+  onCheckedChange?: (event: any) => void;
 };
 export const Checkbox = (props: CheckboxProps) => {
   const { checked = false, className, disabled = false, id, label = "", onValueChange, position, required } = props;
