@@ -29,14 +29,16 @@ export const App: FC<Props> = ({ demo = false }) => {
 
   return (
     <>
+      <Loader />
       <Header />
       <Routes>
-        <Route path="/todolist/" element={<TodolistList demo={demo} />} />
+        <Route path="/" element={<TodolistList demo={demo} />} />
+        <Route path="/todolist" element={<TodolistList demo={demo} />} />
         <Route path="/login/" element={<Login />} />
         <Route path="/404" element={<h1>PAGE NOT FOUND</h1>} />
         <Route path="*" element={<Navigate to={"/404"} />} />
       </Routes>
-      <Loader />
+
       <ErrorSnackbar />
     </>
   );

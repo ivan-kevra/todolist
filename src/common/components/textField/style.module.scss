@@ -5,6 +5,7 @@
   .inputContainer {
     position: relative;
     width: 100%;
+    display: flex;
 
     .input {
       all: unset;
@@ -40,13 +41,13 @@
     }
     .password {
       padding: 6px 35px 6px 12px;
+      position: relative;
     }
     .search {
       padding: 6px 12px 6px 30px;
     }
     .showPassword {
       cursor: pointer;
-
       position: absolute;
       top: 17px;
       right: 0px;
